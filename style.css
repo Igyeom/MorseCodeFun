@@ -1,0 +1,24 @@
+#key {
+  background-color: goldenrod;
+  outline: none;
+  font-size: 40pt;
+  border: none;
+}
+body {
+  background-color: black;
+  font-family: 'Trebuchet MS';
+  color: white;
+}
+
+input {
+  background-color: black;
+  font-size: 40pt;
+  outline: white;
+  outline-style: auto;
+  outline-width: 4px;
+  color: white;
+}
+
+#username {
+  background-color: black;
+}
