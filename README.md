@@ -1,4 +1,4 @@
-# MorseGQ
+# MorseCode.Fun
 The official repo for MorseGQ, a hobby project by juicyguyzer!
 
 Still in beta, PR's are appreciated.
