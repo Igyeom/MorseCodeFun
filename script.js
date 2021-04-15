@@ -1,13 +1,13 @@
 var context = new AudioContext();
 var o = context.createOscillator();
 
-var frequency = 550.0;
+var frequency = 1000.0;
 o.frequency.value = frequency;
 var counter = 0;
 var interval = 0;
 var message = "";
 
-var MORSE_CODE = {".-": "a", "-...":"b", "-.-.": "c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---":"j", "-.-":"k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-":"t", "..-":"u", "...-":"v", ".--":"w", "-..-":"x", "-.--":"y", "--..":"z", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", "---..":"8", "----.":"9", "-----":"0", "|":" "};
+var MORSE_CODE = {".-": "a", "-...":"b", "-.-.": "c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---":"j", "-.-":"k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-":"t", "..-":"u", "...-":"v", ".--":"w", "-..-":"x", "-.--":"y", "--..":"z", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", "---..":"8", "----.":"9", "-----":"0", "|":" ", "..--":"\n"};
 
 var decodeMorse = function(morseCode){
   var words = (morseCode).split('  ');
@@ -27,29 +27,27 @@ var decodeMorse = function(morseCode){
 }
 
 function red() {
+  if (counter > 70) {
+    message += "   ";
+    document.getElementById('result').value += decodeMorse(message);
+    message = "";
+  } else if (counter > 30) {
+    document.getElementById('result').value += decodeMorse(message);
+    message = "";
+  }
   var key = document.getElementById('key');
   key.style.backgroundColor = "red";
   clearInterval(interval);
   o.type = "sine";
   o.connect(context.destination);
   o.start();
-  if (counter > 70) {
-    message = message + "   ";
-    document.getElementById('result').innerHTML = document.getElementById('result').innerHTML + decodeMorse(message);
-    console.log(decodeMorse(message));
-    message = "";
-  } else if (counter > 30) {
-    document.getElementById('result').innerHTML = document.getElementById('result').innerHTML + decodeMorse(message);
-    console.log(decodeMorse(message));
-    message = "";
-  }
   counter = 0;
   interval = setInterval(count, 10);
 }
 
-function gold() {
+function lime() {
   var key = document.getElementById('key');
-  key.style.backgroundColor = "goldenrod";
+  key.style.backgroundColor = "lime";
   o.disconnect(context.destination);
   o.stop();
   o = context.createOscillator();
@@ -83,4 +81,8 @@ function dit_or_dah() {
   } else {
     message = message + "-";
   }
+}
+
+function changePassword() {
+
 }
