@@ -1,7 +1,7 @@
 # MorseGQ
 The official repo for morsecode.fun, a hobby project by juicyguyzer!
 
-Still in beta, PR's are appreciated.
+Still in development.
 
 # Copyright
 This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
