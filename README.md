@@ -1,5 +1,5 @@
 # MorseGQ
-The official repo for MorseGQ, a hobby project by juicyguyzer!
+The official repo for morsecode.fun, a hobby project by juicyguyzer!
 
 Still in beta, PR's are appreciated.
 
