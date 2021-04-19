@@ -1,24 +1,97 @@
 var MORSE_CODE = {".-": "a", "-...":"b", "-.-.": "c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---":"j", "-.-":"k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-":"t", "..-":"u", "...-":"v", ".--":"w", "-..-":"x", "-.--":"y", "--..":"z", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", "---..":"8", "----.":"9", "-----":"0", "/":" ", "..--":"\n"};
+var morse = (function() {
+	var isSilent = true,
+		alpha = {
+			A: ".-", 
+			B: "-...", 
+			C: "-.-.", 
+			D: "-..", 
+			E: ".", 
+			F: "..-.", 
+			G: "--.", 
+			H: "....", 
+			I: "..", 
+			J: ".---", 
+			K: "-.-", 
+			L: ".-..", 
+			M: "--", 
+			N: "-.", 
+			O: "---", 
+			P: ".--.", 
+			Q: "--.-", 
+			R: ".-.", 
+			S: "...", 
+			T: "-", 
+			U: "..-", 
+			V: "...-", 
+			W: ".--", 
+			X: "-..-", 
+			Y: "-.--", 
+			Z: "--..",
+			" ": "/",
+			"1": ".----",
+			"2": "..---",
+			"3": "...--",
+			"4": "....-",
+			"5": ".....",
+			"6": "-....",
+			"7": "--...",
+			"8": "---..",
+			"9": "----.",
+			"0": "-----"
+		},
+		morse = flipObject(alpha);
 
-var decodeMorse = function(morseCode){
-  var words = (morseCode).split('  ');
-  var letters = words.map((w) => w.split(' '));
-  var decoded = [];
+	morse["|"] = " ";
 
-  for(var i = 0; i < letters.length; i++){
-    decoded[i] = [];
-    for(var x = 0; x < letters[i].length; x++){
-        if(MORSE_CODE[letters[i][x]]){
-            decoded[i].push( MORSE_CODE[letters[i][x]] );
-        }
-    }
-  }
+	function flipObject(obj) {
+		var ret = {},
+			prop;
 
-  return decoded.map(arr => arr.join('')).join(' ');
-}
+		for ( prop in obj ) ret[obj[prop]] = prop;
 
-function decode() {
-  document.getElementById('translation').value = decodeMorse(document.getElementById('input').value);
-}
+		return ret;
+	}
 
-setInterval(decode, 10);
+	function encode( str ) {
+		var ret = "",
+			i = 0,
+			len = str.length;
+
+		str = str.toUpperCase();
+
+		for ( ; i < len; i++ ) {
+			if ( alpha[ str.charAt(i) ] )
+				ret += " " + alpha[ str.charAt(i) ];
+			else if ( !isSilent )
+				new Error("morse.encode: Can't handle " + str.charAt(i));
+		}
+
+		return ret.slice(1);
+	}
+
+	function decode( str ) {
+		var split = str.split(" "),
+            ret = "",
+			i = 0,
+			len = split.length;
+
+		for ( ; i < len; i++ ) {
+			if ( morse[ split[i] ] )
+				ret += morse[ split[i] ];
+			else if ( !isSilent )
+				new Error("morse.decode: Can't handle " + split[i]);
+		}
+
+		return ret;
+	}
+
+	return {
+		encode: encode,
+		decode: decode,
+		silent: function() {
+			isSilent = !!arguments.length;
+		}
+	};
+
+})();
