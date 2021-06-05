@@ -63,7 +63,7 @@
     <br>
     <br>
     <h1 style="color: white;">Made by juicyguyzer / Ian Park</h1>
-    <button id="key" style="color: black; background-color: lime;" onmousedown="red();" onmouseup="lime();" ontouchstart="red();" ontouchend="lime();">Key</button>
+    <button id="key" style="color: black; background-color: lime;" onmousedown="red();" onmouseup="lime();" ontouchstart="red();" ontouchend="lime();" onkeydown="red();" onkeyup="lime();">Key</button>
     <p>Frequency:</p>
     <input type="number" value="1000" id="freq" min="300" max="1000">
     <input type="submit" value="Set Frequency" id="submit" onmousedown="setfreq();" onmouseup="black();" ontouchstart="setfreq();" ontouchend="black();"><br>
