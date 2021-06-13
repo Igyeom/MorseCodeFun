@@ -8,7 +8,6 @@ Still in development.
 Issues are welcome, but the issues listed below are what I already know, and am fixing. You don't have to report these:
 
 - The chat page (chat.php) gives me a 403 Error
-- Change Password Not Working
 
 # Copyright
 This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
